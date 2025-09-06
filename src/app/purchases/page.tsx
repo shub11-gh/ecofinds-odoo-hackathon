@@ -3,6 +3,14 @@ import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Truck } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function PurchasesPage() {
   return (
@@ -11,26 +19,43 @@ export default function PurchasesPage() {
       {mockPurchases.length > 0 ? (
         <div className="space-y-4">
           {mockPurchases.map((item) => (
-            <Link href={`/products/${item.id}`} key={item.id}>
-              <Card className="flex items-center p-4 hover:bg-muted/50 transition-colors">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  width={150}
-                  height={100}
-                  className="rounded-md object-cover h-24 w-36"
-                  data-ai-hint={item.imageHint}
-                />
-                <div className="ml-4 flex-grow">
-                  <h2 className="font-semibold">{item.title}</h2>
-                  <p className="text-sm text-muted-foreground">{item.category}</p>
+            <Card key={item.id} className="p-4">
+              <div className="flex flex-col sm:flex-row items-center">
+                <Link href={`/products/${item.id}`} className="flex items-center flex-grow w-full sm:w-auto mb-4 sm:mb-0">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    width={150}
+                    height={100}
+                    className="rounded-md object-cover h-24 w-36"
+                    data-ai-hint={item.imageHint}
+                  />
+                  <div className="ml-4 flex-grow">
+                    <h2 className="font-semibold">{item.title}</h2>
+                    <p className="text-sm text-muted-foreground">{item.category}</p>
+                    <p className="font-bold text-primary text-lg mt-1">${item.price.toFixed(2)}</p>
+                  </div>
+                </Link>
+
+                <div className="flex-shrink-0 text-center sm:text-right w-full sm:w-auto">
+                  <Badge variant="outline" className="mb-2">Purchased</Badge>
+                  <p className="text-sm text-muted-foreground">Est. Arrival: {new Date(item.estimatedArrival).toLocaleDateString()}</p>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="ghost" className="mt-2">
+                          <Truck className="mr-2 h-4 w-4" />
+                          Show tracker preview
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Tracking: {item.trackingNumber}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
-                <div className="text-right">
-                    <p className="font-bold text-primary text-lg">${item.price.toFixed(2)}</p>
-                    <Badge variant="outline" className="mt-1">Purchased</Badge>
-                </div>
-              </Card>
-            </Link>
+              </div>
+            </Card>
           ))}
         </div>
       ) : (

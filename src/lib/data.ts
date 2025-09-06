@@ -1,4 +1,4 @@
-import type { Product, User, Category } from './types';
+import type { Product, User, Category, Purchase } from './types';
 
 export const categories: Category[] = ['Electronics', 'Furniture', 'Clothing', 'Books', 'Other'];
 
@@ -83,6 +83,11 @@ export const mockCart: Product[] = [
   mockProducts[3]
 ];
 
-export const mockPurchases: Product[] = [
-  mockProducts[4]
+export const mockPurchases: Purchase[] = [
+  {
+    ...mockProducts[4],
+    purchaseDate: '2024-07-28',
+    estimatedArrival: '2024-08-05',
+    trackingNumber: '1Z999AA10123456784'
+  }
 ];

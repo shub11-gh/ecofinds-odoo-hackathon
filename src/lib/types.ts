@@ -23,3 +23,9 @@ export interface User {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export interface Purchase extends Product {
+  purchaseDate: string;
+  estimatedArrival: string;
+  trackingNumber: string;
+}
