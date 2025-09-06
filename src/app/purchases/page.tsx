@@ -1,4 +1,7 @@
-import { mockPurchases } from '@/lib/data';
+
+'use client';
+
+import { usePurchaseStore } from '@/lib/store';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,12 +16,14 @@ import {
 import { DeliveryTracker } from '@/components/purchases/DeliveryTracker';
 
 export default function PurchasesPage() {
+  const { purchases } = usePurchaseStore();
+
   return (
     <div>
       <h1 className="text-3xl font-bold font-headline mb-8">Your Purchases</h1>
-      {mockPurchases.length > 0 ? (
+      {purchases.length > 0 ? (
         <div className="space-y-4">
-          {mockPurchases.map((item) => (
+          {purchases.map((item) => (
             <Card key={item.id} className="p-4">
               <div className="flex flex-col sm:flex-row items-center">
                 <Link href={`/products/${item.id}`} className="flex items-center flex-grow w-full sm:w-auto mb-4 sm:mb-0">

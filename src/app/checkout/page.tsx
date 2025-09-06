@@ -7,9 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { useCartStore } from '@/lib/store';
+import { useCartStore, usePurchaseStore } from '@/lib/store';
 import { useToast } from '@/hooks/use-toast';
-import { mockPurchases } from '@/lib/data';
 import type { Purchase } from '@/lib/types';
 import { CreditCard, Landmark, Wallet, Truck } from 'lucide-react';
 
@@ -17,15 +16,13 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { toast } = useToast();
   const { items: cartItems, clearCart } = useCartStore();
+  const { addPurchases } = usePurchaseStore();
   const [paymentMethod, setPaymentMethod] = useState('upi');
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
   const totalWithShipping = totalPrice + 5;
 
   const handlePlaceOrder = () => {
-    // In a real app, this would involve a payment gateway integration.
-    // Here, we simulate a successful order.
-
     const newPurchases: Purchase[] = cartItems.map(item => {
       const arrivalDate = new Date();
       arrivalDate.setDate(arrivalDate.getDate() + 7); // Arrives in 7 days
@@ -38,8 +35,8 @@ export default function CheckoutPage() {
       };
     });
 
-    // Add new purchases to the mock data
-    mockPurchases.unshift(...newPurchases);
+    // Add new purchases to the purchase store
+    addPurchases(newPurchases);
 
     // Clear the cart
     clearCart();

@@ -1,6 +1,7 @@
 
 import { create } from 'zustand';
-import type { Product } from './types';
+import type { Product, Purchase } from './types';
+import { mockPurchases } from './data';
 
 interface CartState {
   items: Product[];
@@ -26,4 +27,18 @@ export const useCartStore = create<CartState>((set, get) => ({
   isItemInCart: (productId) =>
     get().items.some((item) => item.id === productId),
   clearCart: () => set({ items: [] }),
+}));
+
+
+interface PurchaseState {
+    purchases: Purchase[];
+    addPurchases: (newPurchases: Purchase[]) => void;
+}
+
+export const usePurchaseStore = create<PurchaseState>((set) => ({
+    purchases: mockPurchases,
+    addPurchases: (newPurchases) =>
+        set((state) => ({
+            purchases: [...newPurchases, ...state.purchases],
+        })),
 }));
