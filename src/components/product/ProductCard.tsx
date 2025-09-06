@@ -5,6 +5,7 @@ import type { Product } from '@/lib/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { IndianRupee } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -42,8 +43,8 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
         </Link>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <p className="text-xl font-headline font-bold text-primary">
-          ₹{product.price.toFixed(2)}
+        <p className="text-xl font-headline font-bold text-primary flex items-center">
+          <IndianRupee className="h-5 w-5 mr-1" />{product.price.toFixed(2)}
         </p>
         {actions ? (
           <div className="flex gap-2">{actions}</div>

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Truck } from 'lucide-react';
+import { Truck, IndianRupee } from 'lucide-react';
 import {
   Popover,
   PopoverContent,
@@ -38,7 +38,7 @@ export default function PurchasesPage() {
                   <div className="ml-4 flex-grow">
                     <h2 className="font-semibold">{item.title}</h2>
                     <p className="text-sm text-muted-foreground">{item.category}</p>
-                    <p className="font-bold text-primary text-lg mt-1">₹{item.price.toFixed(2)}</p>
+                    <p className="font-bold text-primary text-lg mt-1 flex items-center"><IndianRupee className="h-5 w-5 mr-1" />{item.price.toFixed(2)}</p>
                   </div>
                 </Link>
 

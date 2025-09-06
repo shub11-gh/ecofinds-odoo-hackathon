@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, ShoppingCart, Leaf, PlusCircle, Menu, Wrench, LogOut } from 'lucide-react';
+import { Search, ShoppingCart, Leaf, PlusCircle, Menu, Wrench, LogOut, IndianRupee } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
@@ -156,7 +156,7 @@ export default function Header() {
                           />
                           <div>
                             <p className="font-semibold">{product.title}</p>
-                            <p className="text-sm text-primary">₹{product.price.toFixed(2)}</p>
+                            <p className="text-sm text-primary flex items-center"><IndianRupee className="h-4 w-4 mr-1" />{product.price.toFixed(2)}</p>
                           </div>
                         </div>
                       ))}

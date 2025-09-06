@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2 } from 'lucide-react';
+import { Trash2, IndianRupee } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 
 export default function CartPage() {
@@ -31,7 +31,7 @@ export default function CartPage() {
                 <div className="ml-4 flex-grow">
                   <h2 className="font-semibold">{item.title}</h2>
                   <p className="text-sm text-muted-foreground">{item.category}</p>
-                  <p className="font-bold text-primary mt-1">₹{item.price.toFixed(2)}</p>
+                  <p className="font-bold text-primary mt-1 flex items-center"><IndianRupee className="h-4 w-4 mr-1" />{item.price.toFixed(2)}</p>
                 </div>
                 <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
                   <Trash2 className="h-5 w-5 text-destructive" />
@@ -48,15 +48,15 @@ export default function CartPage() {
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>₹{totalPrice.toFixed(2)}</span>
+                  <span className='flex items-center'><IndianRupee className="h-4 w-4 mr-1" />{totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>₹5.00</span>
+                  <span className='flex items-center'><IndianRupee className="h-4 w-4 mr-1" />5.00</span>
                 </div>
                 <div className="border-t pt-4 flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span>₹{(totalPrice + 5).toFixed(2)}</span>
+                  <span className='flex items-center'><IndianRupee className="h-5 w-5 mr-1" />{(totalPrice + 5).toFixed(2)}</span>
                 </div>
               </CardContent>
               <CardFooter>

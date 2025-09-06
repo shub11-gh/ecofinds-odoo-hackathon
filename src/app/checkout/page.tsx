@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { useCartStore, usePurchaseStore } from '@/lib/store';
 import { useToast } from '@/hooks/use-toast';
 import type { Purchase } from '@/lib/types';
-import { CreditCard, Landmark, Wallet, Truck } from 'lucide-react';
+import { CreditCard, Landmark, Wallet, Truck, IndianRupee } from 'lucide-react';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -118,22 +118,22 @@ export default function CheckoutPage() {
               {cartItems.map(item => (
                 <div key={item.id} className="flex justify-between text-sm">
                   <span>{item.title}</span>
-                  <span>₹{item.price.toFixed(2)}</span>
+                  <span className='flex items-center'><IndianRupee className="h-3 w-3 mr-1" />{item.price.toFixed(2)}</span>
                 </div>
               ))}
               <div className="border-t pt-4">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>₹{totalPrice.toFixed(2)}</span>
+                  <span className='flex items-center'><IndianRupee className="h-4 w-4 mr-1" />{totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
-                  <span>₹5.00</span>
+                  <span className='flex items-center'><IndianRupee className="h-4 w-4 mr-1" />5.00</span>
                 </div>
               </div>
               <div className="border-t pt-4 flex justify-between font-bold text-lg">
                 <span>Total</span>
-                <span>₹{totalWithShipping.toFixed(2)}</span>
+                <span className='flex items-center'><IndianRupee className="h-5 w-5 mr-1" />{totalWithShipping.toFixed(2)}</span>
               </div>
             </CardContent>
           </Card>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter, useParams } from 'next/navigation';
 import { mockProducts, mockUser } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, IndianRupee } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
@@ -68,7 +68,7 @@ export default function ProductDetailPage() {
             <Badge variant="outline" className="w-fit">{product.subcategory}</Badge>
           </div>
           <h1 className="text-4xl font-bold font-headline mb-4">{product.title}</h1>
-          <p className="text-3xl font-bold text-primary mb-6">₹{product.price.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-primary mb-6 flex items-center"><IndianRupee className="h-7 w-7 mr-1" />{product.price.toFixed(2)}</p>
           <p className="text-muted-foreground leading-relaxed flex-grow">{product.description}</p>
           
           {!isOwner && (
