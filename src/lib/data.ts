@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
     price: 120.00,
     category: 'Books',
     subcategory: 'Fiction',
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://imgs.search.brave.com/8cJVPvsR_GB5LK1Z0XG1ncJ41Jr1ioN5RRaYhc7ZLs4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9oYXJk/YmFja25vdmVscy5j/b20vY2RuL3Nob3Av/ZmlsZXMvQnJvbnRl/c19ub19UZW5hbnQu/cG5nP3Y9MTczMzE0/MDE4NCZ3aWR0aD01/MzM',
     userId: '2',
     imageHint: 'book collection'
   },
