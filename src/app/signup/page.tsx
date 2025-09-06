@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardContent,
@@ -11,8 +14,19 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { Leaf } from "lucide-react"
+import { useRouter } from "next/navigation"
+import type React from "react";
 
 export default function SignUpPage() {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, you would handle form validation and user creation here.
+    console.log("Form submitted");
+    router.push('/login');
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[70vh]">
       <Card className="w-full max-w-sm">
@@ -24,7 +38,7 @@ export default function SignUpPage() {
           <CardDescription>Join EcoFinds and start your sustainable journey.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form id="signup-form">
+          <form id="signup-form" onSubmit={handleSubmit}>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Username</Label>
