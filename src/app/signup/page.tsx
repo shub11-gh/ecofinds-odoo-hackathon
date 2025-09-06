@@ -16,15 +16,15 @@ import Link from "next/link"
 import { Leaf } from "lucide-react"
 import { useRouter } from "next/navigation"
 import type React from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function SignUpPage() {
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would handle form validation and user creation here.
-    console.log("Form submitted");
-    router.push('/login');
+    login();
   };
 
   return (

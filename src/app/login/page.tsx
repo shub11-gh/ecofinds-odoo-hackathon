@@ -15,8 +15,8 @@ import { Leaf } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useRouter } from "next/navigation";
 import type React from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const GoogleIcon = () => (
     <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -41,13 +41,11 @@ const GoogleIcon = () => (
   );
 
 export default function LoginPage() {
-  const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would handle form validation and user authentication here.
-    console.log("Form submitted");
-    router.push('/');
+    login();
   };
 
   return (
