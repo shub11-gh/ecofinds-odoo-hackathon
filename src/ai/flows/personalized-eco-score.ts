@@ -82,7 +82,10 @@ const ecoScoreFlow = ai.defineFlow(
     outputSchema: EcoScoreOutputSchema,
   },
   async input => {
-    const {output} = await ecoScorePrompt(input);
+    const {output} = await ai.generate({
+      prompt: ecoScorePrompt,
+      input,
+    });
     return output!;
   }
 );
