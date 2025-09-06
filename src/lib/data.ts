@@ -1,4 +1,5 @@
-import type { Product, User, Category, Purchase, SubCategory } from './types';
+
+import type { Product, User, Category, Purchase, SubCategory, RepairShop } from './types';
 
 export const categories: { name: Category, subcategories: SubCategory<Category>[] }[] = [
     { name: 'Electronics', subcategories: ['Laptops', 'Mobiles', 'Tablets'] },
@@ -17,7 +18,7 @@ export const mockProducts: Product[] = [
     category: 'Clothing',
     subcategory: 'Jackets',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '3',
+    userId: '2',
     imageHint: 'leather jacket'
   },
   {
@@ -39,7 +40,7 @@ export const mockProducts: Product[] = [
     category: 'Books',
     subcategory: 'Fiction',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '3',
+    userId: '2',
     imageHint: 'book collection'
   },
   {
@@ -119,4 +120,57 @@ export const mockPurchases: Purchase[] = [
     trackingNumber: '1Z999AA10123456784',
     trackingStatus: 'Out for Delivery'
   }
+];
+
+export const repairCategories = ['Electronics', 'Furniture', 'Clothing', 'Appliances', 'Jewelry', 'Other'];
+
+export const mockRepairShops: RepairShop[] = [
+    {
+        id: 'shop-1',
+        name: 'Gadget Gurus',
+        category: 'Electronics',
+        distance: '1.2 miles away',
+        contact: '555-0101',
+        description: 'Expert repairs for all your electronic devices, from phones to laptops. Same-day screen repairs available.'
+    },
+    {
+        id: 'shop-2',
+        name: 'The Wood Whisperer',
+        category: 'Furniture',
+        distance: '2.5 miles away',
+        contact: '555-0102',
+        description: 'Specializing in the restoration and repair of wooden furniture. We bring your cherished pieces back to life.'
+    },
+    {
+        id: 'shop-3',
+        name: 'Stitch in Time',
+        category: 'Clothing',
+        distance: '3.1 miles away',
+        contact: '555-0103',
+        description: 'Professional alterations and repairs for all types of clothing. From simple hems to complex tailoring.'
+    },
+     {
+        id: 'shop-4',
+        name: 'Appliance Avengers',
+        category: 'Appliances',
+        distance: '4.0 miles away',
+        contact: '555-0104',
+        description: 'Fast and reliable repairs for all major home appliances. Certified technicians for washers, dryers, and more.'
+    },
+    {
+        id: 'shop-5',
+        name: 'The Gem Clinic',
+        category: 'Jewelry',
+        distance: '4.5 miles away',
+        contact: '555-0105',
+        description: 'Delicate and precise jewelry repair. We handle everything from ring sizing to stone replacement with care.'
+    },
+    {
+        id: 'shop-6',
+        name: 'Fix-It-All Workshop',
+        category: 'Other',
+        distance: '5.2 miles away',
+        contact: '555-0106',
+        description: 'A general repair shop for anything else you can think of. If it\'s broken, we can probably fix it!'
+    }
 ];

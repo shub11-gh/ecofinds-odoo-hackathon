@@ -1,3 +1,4 @@
+
 export type Category = 'Electronics' | 'Furniture' | 'Clothing' | 'Books' | 'Other';
 
 export type SubCategory<T extends Category> = T extends 'Electronics'
@@ -59,4 +60,15 @@ export interface Purchase extends Product {
   estimatedArrival: string;
   trackingNumber: string;
   trackingStatus: TrackingStatus;
+}
+
+export type RepairCategory = 'Electronics' | 'Furniture' | 'Clothing' | 'Appliances' | 'Jewelry' | 'Other';
+
+export interface RepairShop {
+  id: string;
+  name: string;
+  category: RepairCategory;
+  distance: string;
+  contact: string;
+  description: string;
 }

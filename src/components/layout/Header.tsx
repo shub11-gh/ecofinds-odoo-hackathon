@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, ShoppingCart, Leaf, PlusCircle, Menu } from 'lucide-react';
+import { Search, ShoppingCart, Leaf, PlusCircle, Menu, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
@@ -85,6 +85,12 @@ export default function Header() {
       </Link>
       <Link href="/purchases" passHref>
         <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">Purchases</Button>
+      </Link>
+       <Link href="/repair" passHref>
+        <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">
+            <Wrench className="mr-2 h-5 w-5" />
+            Repair
+        </Button>
       </Link>
       <Link href="/dashboard" passHref>
         <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">Dashboard</Button>
