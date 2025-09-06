@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardContent,
@@ -12,6 +15,8 @@ import { Leaf } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRouter } from "next/navigation";
+import type React from "react";
 
 const GoogleIcon = () => (
     <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -36,6 +41,15 @@ const GoogleIcon = () => (
   );
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, you would handle form validation and user authentication here.
+    console.log("Form submitted");
+    router.push('/');
+  };
+
   return (
     <div className="flex items-center justify-center min-h-[70vh]">
       <Card className="w-full max-w-sm">
@@ -47,15 +61,17 @@ export default function LoginPage() {
           <CardDescription>Log in to your EcoFinds account.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-            <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="you@example.com" />
-            </div>
-            <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="••••••••" />
-            </div>
-            <Button className="w-full">Login with Email</Button>
+           <form onSubmit={handleSubmit} className="grid gap-4">
+              <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="you@example.com" />
+              </div>
+              <div className="grid gap-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" placeholder="••••••••" />
+              </div>
+              <Button type="submit" className="w-full">Login with Email</Button>
+            </form>
 
             <div className="flex items-center">
                 <Separator className="flex-grow" />
