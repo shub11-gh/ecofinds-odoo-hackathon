@@ -1,15 +1,22 @@
+
+'use client';
+
 import Image from 'next/image';
-import { mockProducts, mockUser } from '@/lib/data';
+import { useRouter } from 'next/navigation';
+import { mockProducts, mockUser, mockCart } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const { toast } = useToast();
   const product = mockProducts.find(p => p.id === params.id);
-  
+
   // In a real app, you would get the current logged-in user's ID
-  const currentUserId = mockUser.id; 
+  const currentUserId = mockUser.id;
   const isOwner = product?.userId === currentUserId;
 
   if (!product) {
@@ -19,6 +26,28 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    if (product) {
+      // Check if the item is already in the cart
+      if (mockCart.find(item => item.id === product.id)) {
+        toast({
+          title: 'Already in Cart',
+          description: `${product.title} is already in your cart.`,
+        });
+      } else {
+        mockCart.push(product);
+        toast({
+          title: 'Added to Cart!',
+          description: `Successfully added "${product.title}" to your cart.`,
+        });
+        // You might want to refresh parts of the layout (e.g., a cart icon with a count)
+        // For now, we'll just log it. A full-fledged state management solution would be better here.
+        console.log('Cart updated:', mockCart);
+        router.refresh(); // This helps if parts of the page depend on server state
+      }
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -45,7 +74,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           
           {!isOwner && (
             <div className="mt-8">
-              <Button size="lg" className="w-full">
+              <Button size="lg" className="w-full" onClick={handleAddToCart}>
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Add to Cart
               </Button>
