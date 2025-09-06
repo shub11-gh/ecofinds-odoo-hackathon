@@ -48,7 +48,7 @@ const ecoScorePrompt = ai.definePrompt({
   output: {schema: EcoScoreOutputSchema},
   prompt: `You are an AI assistant that helps users understand and improve their sustainability impact on the EcoFinds platform.
 
-You will receive information about the user's profile and their product listings.
+You will receive information about the user's profile and optionally their product listings.
 
 Based on this information, you will generate an EcoScore, provide personalized tips, and determine a certification level for the user.
 
