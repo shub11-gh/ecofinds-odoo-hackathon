@@ -266,7 +266,7 @@ export function ProductForm({ product }: ProductFormProps) {
                                         type="button"
                                         variant="outline"
                                         className="w-full flex items-center gap-2"
-                                        onClick={() => fileInput-ref.current?.click()}
+                                        onClick={() => fileInputRef.current?.click()}
                                     >
                                         <ImagePlus className="h-5 w-5" />
                                         Upload Image
