@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { CheckCircle2, Package, Truck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { TrackingStatus } from '@/lib/types';
