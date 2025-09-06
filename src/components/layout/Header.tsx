@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -15,13 +16,13 @@ export default function Header() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const query = formData.get('search') as string;
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams();
     if (query) {
       params.set('q', query);
     } else {
       params.delete('q');
     }
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`/?${params.toString()}`);
   };
 
   return (
