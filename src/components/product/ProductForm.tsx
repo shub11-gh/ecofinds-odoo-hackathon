@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,7 +30,7 @@ import { useToast } from '@/hooks/use-toast';
 import { categories } from '@/lib/data';
 import type { Product } from '@/lib/types';
 import { generateEcoScore } from '@/ai/flows/personalized-eco-score';
-import { ImagePlus, Loader2 } from 'lucide-react';
+import { ImagePlus, Loader2, X } from 'lucide-react';
 import React from 'react';
 
 const formSchema = z.object({
@@ -37,6 +38,7 @@ const formSchema = z.object({
   description: z.string().min(10, 'Description must be at least 10 characters long.'),
   price: z.coerce.number().positive('Price must be a positive number.'),
   category: z.enum(categories),
+  image: z.any().optional(),
 });
 
 type ProductFormProps = {
@@ -47,6 +49,10 @@ export function ProductForm({ product }: ProductFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [imagePreview, setImagePreview] = React.useState<string | null>(
+    product?.imageUrl || null
+  );
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,17 +64,39 @@ export function ProductForm({ product }: ProductFormProps) {
     },
   });
 
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+        form.setValue('image', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImagePreview(null);
+    form.setValue('image', null);
+    if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+    }
+  }
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     try {
-      // Here you would typically save the product to your database.
-      // We'll simulate that and then call the AI.
       console.log('Form submitted:', values);
 
-      // Call the GenAI flow
       const ecoScoreResult = await generateEcoScore({
         userProfile: 'A user named SustainableSam is creating a new listing.',
-        productListing: JSON.stringify(values),
+        productListing: JSON.stringify({
+            title: values.title,
+            description: values.description,
+            price: values.price,
+            category: values.category,
+        }),
       });
 
       console.log('EcoScore Result:', ecoScoreResult);
@@ -85,9 +113,8 @@ export function ProductForm({ product }: ProductFormProps) {
         });
       }
       
-      // Redirect to my listings page
       router.push('/my-listings');
-      router.refresh(); // To show the new item
+      router.refresh();
     } catch (error) {
       console.error('Failed to submit listing:', error);
       toast({
@@ -179,18 +206,61 @@ export function ProductForm({ product }: ProductFormProps) {
               )}
             />
             
-            <FormItem>
-                <FormLabel>Image</FormLabel>
-                <FormControl>
-                    <Button type="button" variant="outline" className="w-full flex items-center gap-2">
-                        <ImagePlus className="h-5 w-5" />
-                        + Add Image (Placeholder)
-                    </Button>
-                </FormControl>
-                <FormDescription>
-                    This is a placeholder. In a real app, you would upload an image.
-                </FormDescription>
-            </FormItem>
+            <FormField
+                control={form.control}
+                name="image"
+                render={() => (
+                    <FormItem>
+                        <FormLabel>Image</FormLabel>
+                        <FormControl>
+                            <>
+                                <Input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="hidden"
+                                    ref={fileInputRef}
+                                />
+                                {!imagePreview ? (
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        className="w-full flex items-center gap-2"
+                                        onClick={() => fileInputRef.current?.click()}
+                                    >
+                                        <ImagePlus className="h-5 w-5" />
+                                        Upload Image
+                                    </Button>
+                                ) : (
+                                    <div className="relative group w-full aspect-video rounded-md overflow-hidden">
+                                        <Image
+                                            src={imagePreview}
+                                            alt="Product preview"
+                                            fill
+                                            className="object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                            <Button
+                                                type="button"
+                                                variant="destructive"
+                                                size="icon"
+                                                onClick={handleRemoveImage}
+                                            >
+                                                <X className="h-5 w-5" />
+                                                <span className="sr-only">Remove Image</span>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )}
+                            </>
+                        </FormControl>
+                        <FormDescription>
+                           Upload a clear image of your item.
+                        </FormDescription>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
 
             <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
