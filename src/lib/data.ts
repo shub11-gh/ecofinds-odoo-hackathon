@@ -1,6 +1,12 @@
-import type { Product, User, Category, Purchase } from './types';
+import type { Product, User, Category, Purchase, SubCategory } from './types';
 
-export const categories: Category[] = ['Electronics', 'Furniture', 'Clothing', 'Books', 'Other'];
+export const categories: { name: Category, subcategories: SubCategory<Category>[] }[] = [
+    { name: 'Electronics', subcategories: ['Laptops', 'Mobiles', 'Tablets'] },
+    { name: 'Furniture', subcategories: ['Sofa', 'Chair', 'Table'] },
+    { name: 'Clothing', subcategories: ['Jackets', 'Jeans', 'Accessories'] },
+    { name: 'Books', subcategories: ['Fiction', 'Non-Fiction', 'Comics'] },
+    { name: 'Other', subcategories: ['Home Decor', 'Art', 'Miscellaneous'] },
+];
 
 export const mockProducts: Product[] = [
   {
@@ -9,6 +15,7 @@ export const mockProducts: Product[] = [
     description: 'A stylish vintage leather jacket, perfect for all seasons. Minor wear and tear, adding to its character.',
     price: 75.00,
     category: 'Clothing',
+    subcategory: 'Jackets',
     imageUrl: 'https://picsum.photos/600/400',
     userId: '1',
     imageHint: 'leather jacket'
@@ -19,6 +26,7 @@ export const mockProducts: Product[] = [
     description: 'A beautifully restored mid-century modern armchair. Upholstery is new, frame is original wood.',
     price: 350.00,
     category: 'Furniture',
+    subcategory: 'Chair',
     imageUrl: 'https://picsum.photos/600/400',
     userId: '2',
     imageHint: 'modern armchair'
@@ -29,6 +37,7 @@ export const mockProducts: Product[] = [
     description: 'A set of 5 classic science fiction novels from the 1960s. All first editions in good condition.',
     price: 120.00,
     category: 'Books',
+    subcategory: 'Fiction',
     imageUrl: 'https://picsum.photos/600/400',
     userId: '1',
     imageHint: 'book collection'
@@ -39,6 +48,7 @@ export const mockProducts: Product[] = [
     description: 'Slightly used portable Bluetooth speaker with excellent sound quality and long battery life. Comes with charging cable.',
     price: 45.00,
     category: 'Electronics',
+    subcategory: 'Mobiles', // Assuming this fits best
     imageUrl: 'https://picsum.photos/600/400',
     userId: '3',
     imageHint: 'bluetooth speaker'
@@ -49,6 +59,7 @@ export const mockProducts: Product[] = [
     description: 'A unique handmade ceramic vase with intricate patterns. Perfect for home decor.',
     price: 30.00,
     category: 'Other',
+    subcategory: 'Home Decor',
     imageUrl: 'https://picsum.photos/600/400',
     userId: '2',
     imageHint: 'ceramic vase'
@@ -59,6 +70,7 @@ export const mockProducts: Product[] = [
     description: 'Gently worn designer denim jeans, size 32/32. No visible signs of wear.',
     price: 60.00,
     category: 'Clothing',
+    subcategory: 'Jeans',
     imageUrl: 'https://picsum.photos/600/400',
     userId: '3',
     imageHint: 'denim jeans'

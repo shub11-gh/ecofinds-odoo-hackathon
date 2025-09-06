@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 interface ProductCardProps {
   product: Product;
@@ -14,7 +15,7 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
     <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <CardHeader className="p-0">
         <Link href={`/products/${product.id}`} className="block">
-          <div className="aspect-w-4 aspect-h-3">
+          <div className="aspect-w-4 aspect-h-3 relative">
             <Image
               src={product.imageUrl}
               alt={product.title}
@@ -23,6 +24,7 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
               className="object-cover w-full h-48"
               data-ai-hint={product.imageHint}
             />
+            <Badge variant="secondary" className="absolute top-2 right-2">{product.subcategory}</Badge>
           </div>
         </Link>
       </CardHeader>

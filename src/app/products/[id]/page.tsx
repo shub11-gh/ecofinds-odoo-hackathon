@@ -3,6 +3,7 @@ import { mockProducts } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const product = mockProducts.find(p => p.id === params.id);
@@ -29,7 +30,11 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           />
         </div>
         <div className="flex flex-col">
-          <Badge variant="secondary" className="w-fit mb-2">{product.category}</Badge>
+          <div className='flex items-center gap-2 mb-2'>
+            <Badge variant="secondary" className="w-fit">{product.category}</Badge>
+            <Separator orientation='vertical' className='h-4'/>
+            <Badge variant="outline" className="w-fit">{product.subcategory}</Badge>
+          </div>
           <h1 className="text-4xl font-bold font-headline mb-4">{product.title}</h1>
           <p className="text-3xl font-bold text-primary mb-6">${product.price.toFixed(2)}</p>
           <p className="text-muted-foreground leading-relaxed flex-grow">{product.description}</p>

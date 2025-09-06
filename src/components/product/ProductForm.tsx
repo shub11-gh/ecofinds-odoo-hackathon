@@ -28,7 +28,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { categories } from '@/lib/data';
-import type { Product } from '@/lib/types';
+import type { Product, Category, SubCategory } from '@/lib/types';
 import { generateEcoScore } from '@/ai/flows/personalized-eco-score';
 import { ImagePlus, Loader2, X } from 'lucide-react';
 import React from 'react';
@@ -37,7 +37,10 @@ const formSchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters long.'),
   description: z.string().min(10, 'Description must be at least 10 characters long.'),
   price: z.coerce.number().positive('Price must be a positive number.'),
-  category: z.enum(categories),
+  category: z.custom<Category>(val => categories.map(c => c.name).includes(val as Category), {
+    message: "Please select a valid category"
+  }),
+  subcategory: z.string().min(1, "Please select a sub-category"),
   image: z.any().optional(),
 });
 
@@ -60,9 +63,20 @@ export function ProductForm({ product }: ProductFormProps) {
       title: product?.title || '',
       description: product?.description || '',
       price: product?.price || 0,
-      category: product?.category || categories[0],
+      category: product?.category || undefined,
+      subcategory: product?.subcategory || '',
     },
   });
+
+  const selectedCategory = form.watch('category');
+  const subcategories = categories.find(c => c.name === selectedCategory)?.subcategories || [];
+
+  React.useEffect(() => {
+    // Reset subcategory if category changes and the old subcategory is not valid anymore
+    if (!subcategories.includes(form.getValues('subcategory') as SubCategory<Category>)) {
+        form.setValue('subcategory', '');
+    }
+  }, [selectedCategory, subcategories, form]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -149,31 +163,57 @@ export function ProductForm({ product }: ProductFormProps) {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="category"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {categories.map((cat) => (
-                        <SelectItem key={cat} value={cat}>
-                          {cat}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                control={form.control}
+                name="category"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Category</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                        {categories.map((cat) => (
+                            <SelectItem key={cat.name} value={cat.name}>
+                            {cat.name}
+                            </SelectItem>
+                        ))}
+                        </SelectContent>
+                    </Select>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+                 <FormField
+                    control={form.control}
+                    name="subcategory"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Sub-category</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value} disabled={!selectedCategory}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a sub-category" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                            {subcategories.map((subcat) => (
+                                <SelectItem key={subcat} value={subcat}>
+                                {subcat}
+                                </SelectItem>
+                            ))}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
+           
             <FormField
               control={form.control}
               name="description"
@@ -226,7 +266,7 @@ export function ProductForm({ product }: ProductFormProps) {
                                         type="button"
                                         variant="outline"
                                         className="w-full flex items-center gap-2"
-                                        onClick={() => fileInputRef.current?.click()}
+                                        onClick={() => fileInput-ref.current?.click()}
                                     >
                                         <ImagePlus className="h-5 w-5" />
                                         Upload Image

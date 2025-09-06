@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 import CategoryFilter from '@/components/product/CategoryFilter';
 import ProductCard from '@/components/product/ProductCard';
 import { mockProducts } from '@/lib/data';
-import type { Product } from '@/lib/types';
+import type { Product, Category, SubCategory } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 
 export default function Home({
@@ -11,7 +11,8 @@ export default function Home({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const category = searchParams.category as string | undefined;
+  const category = searchParams.category as Category | undefined;
+  const subcategory = searchParams.subcategory as SubCategory<Category> | undefined;
   const query = searchParams.q as string | undefined;
 
   let filteredProducts: Product[] = mockProducts;
@@ -19,6 +20,12 @@ export default function Home({
   if (category) {
     filteredProducts = filteredProducts.filter(
       (p) => p.category === category
+    );
+  }
+
+  if (subcategory) {
+    filteredProducts = filteredProducts.filter(
+      (p) => p.subcategory === subcategory
     );
   }
 
