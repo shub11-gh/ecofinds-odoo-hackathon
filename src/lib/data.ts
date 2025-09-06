@@ -28,7 +28,7 @@ export const mockProducts: Product[] = [
     price: 350.00,
     category: 'Furniture',
     subcategory: 'Chair',
-    imageUrl: 'https://imgs.search.brave.com/8cJVPvsR_GB5LK1Z0XG1ncJ41Jr1ioN5RRaYhc7ZLs4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9oYXJk/YmFja25vdmVscy5j/b20vY2RuL3Nob3Av/ZmlsZXMvQnJvbnRl/c19ub19UZW5hbnQu/cG5nP3Y9MTczMzE0/MDE4NCZ3aWR0aD01/MzM',
+    imageUrl: 'https://imgs.search.brave.com/HSg94ATi24OOsF8bTm1bCE7BrO1s1-bF7Yg4UY86zL4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFxcW9qME5GcEwu/anBn',
     userId: '2',
     imageHint: 'modern armchair'
   },
