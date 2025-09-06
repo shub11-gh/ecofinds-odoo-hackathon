@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import type { User } from '@/lib/types';
@@ -28,6 +29,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const formSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters long.'),
   email: z.string().email('Please enter a valid email address.'),
+  phone: z.string().optional(),
+  location: z.string().optional(),
+  about: z.string().optional(),
 });
 
 interface DashboardFormProps {
@@ -44,6 +48,9 @@ export function DashboardForm({ user }: DashboardFormProps) {
     defaultValues: {
       username: user.username || '',
       email: user.email || '',
+      phone: user.phone || '',
+      location: user.location || '',
+      about: user.about || '',
     },
   });
 
@@ -53,7 +60,7 @@ export function DashboardForm({ user }: DashboardFormProps) {
       console.log('Profile updated:', values);
 
       const ecoScoreResult = await generateEcoScore({
-        userProfile: `User ${values.username} (${values.email}) has updated their profile.`,
+        userProfile: `User ${values.username} (${values.email}) has updated their profile. Location: ${values.location}. About: ${values.about}`,
       });
       
       console.log('EcoScore Result:', ecoScoreResult);
@@ -102,30 +109,78 @@ export function DashboardForm({ user }: DashboardFormProps) {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Your username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
 
-            <FormField
+                <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                        <Input type="email" placeholder="you@example.com" {...field} />
+                    </FormControl>
+                    <FormDescription>We'll never share your email.</FormDescription>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                        <Input placeholder="123-456-7890" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Your city, country" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+            </div>
+
+             <FormField
               control={form.control}
-              name="email"
+              name="about"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>About Me</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="you@example.com" {...field} />
+                    <Textarea
+                      placeholder="Tell us a little about yourself..."
+                      className="resize-none"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>We'll never share your email.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

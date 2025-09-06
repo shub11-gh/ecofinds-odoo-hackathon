@@ -36,6 +36,9 @@ export interface User {
   id: string;
   username: string;
   email: string;
+  phone?: string;
+  location?: string;
+  about?: string;
   ecoScore?: number;
   ecoTips?: string[];
   ecoCertification?: string;

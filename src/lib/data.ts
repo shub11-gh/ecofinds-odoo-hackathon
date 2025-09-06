@@ -17,7 +17,7 @@ export const mockProducts: Product[] = [
     category: 'Clothing',
     subcategory: 'Jackets',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '2',
+    userId: '3',
     imageHint: 'leather jacket'
   },
   {
@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
     category: 'Books',
     subcategory: 'Fiction',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '2',
+    userId: '3',
     imageHint: 'book collection'
   },
   {
@@ -81,6 +81,9 @@ export const mockUser: User = {
   id: '1',
   username: 'SustainableSam',
   email: 'sam@example.com',
+  phone: '123-456-7890',
+  location: 'Greenville, USA',
+  about: 'Passionate about upcycling and finding new homes for pre-loved items.',
   ecoScore: 78,
   ecoTips: [
     "Consider using biodegradable packaging when you ship items.",
