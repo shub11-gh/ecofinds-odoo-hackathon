@@ -64,7 +64,9 @@ Certification Level:
 A certification level (e.g., Bronze, Silver, Gold) based on the user's EcoScore. The higher the score, the higher the certification level.
 
 User Profile: {{{userProfile}}}
+{{#if productListing}}
 Product Listing: {{{productListing}}}
+{{/if}}
 
 Ensure that the tips are clear, concise, and easy to understand.
 
