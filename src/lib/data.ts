@@ -17,7 +17,7 @@ export const mockProducts: Product[] = [
     category: 'Clothing',
     subcategory: 'Jackets',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '1',
+    userId: '2',
     imageHint: 'leather jacket'
   },
   {
