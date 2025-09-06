@@ -18,12 +18,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+import React from 'react';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category') as Category | undefined;
   const subcategory = searchParams.get('subcategory') as SubCategory<Category> | undefined;
   const query = searchParams.get('q') as string | undefined;
+
+  const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  )
 
   let filteredProducts: Product[] = mockProducts;
 
@@ -66,7 +72,12 @@ export default function Home() {
   return (
     <div>
       <section className="mb-8">
-         <Carousel className="w-full">
+         <Carousel 
+            plugins={[plugin.current]}
+            className="w-full"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
             <CarouselContent>
                 {banners.map((banner, index) => (
                 <CarouselItem key={index}>
