@@ -3,17 +3,19 @@
 
 import Image from 'next/image';
 import { useRouter, useParams } from 'next/navigation';
-import { mockProducts, mockUser, mockCart } from '@/lib/data';
+import { mockProducts, mockUser } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { useCartStore } from '@/lib/store';
 
 export default function ProductDetailPage() {
   const router = useRouter();
   const params = useParams();
   const { toast } = useToast();
+  const { addToCart, isItemInCart } = useCartStore();
   const product = mockProducts.find(p => p.id === params.id);
 
   // In a real app, you would get the current logged-in user's ID
@@ -30,22 +32,18 @@ export default function ProductDetailPage() {
 
   const handleAddToCart = () => {
     if (product) {
-      // Check if the item is already in the cart
-      if (mockCart.find(item => item.id === product.id)) {
+      if (isItemInCart(product.id)) {
         toast({
           title: 'Already in Cart',
           description: `${product.title} is already in your cart.`,
         });
       } else {
-        mockCart.push(product);
+        addToCart(product);
         toast({
           title: 'Added to Cart!',
           description: `Successfully added "${product.title}" to your cart.`,
         });
-        // You might want to refresh parts of the layout (e.g., a cart icon with a count)
-        // For now, we'll just log it. A full-fledged state management solution would be better here.
-        console.log('Cart updated:', mockCart);
-        router.refresh(); // This helps if parts of the page depend on server state
+        router.refresh(); 
       }
     }
   };

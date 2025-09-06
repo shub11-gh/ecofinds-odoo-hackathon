@@ -1,20 +1,23 @@
-import { mockCart } from '@/lib/data';
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2 } from 'lucide-react';
+import { useCartStore } from '@/lib/store';
 
 export default function CartPage() {
-  const totalPrice = mockCart.reduce((sum, item) => sum + item.price, 0);
+  const { items: cartItems, removeFromCart } = useCartStore();
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div>
       <h1 className="text-3xl font-bold font-headline mb-8">Your Cart</h1>
-      {mockCart.length > 0 ? (
+      {cartItems.length > 0 ? (
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2 space-y-4">
-            {mockCart.map((item) => (
+            {cartItems.map((item) => (
               <Card key={item.id} className="flex items-center p-4">
                 <Image
                   src={item.imageUrl}
@@ -29,7 +32,7 @@ export default function CartPage() {
                   <p className="text-sm text-muted-foreground">{item.category}</p>
                   <p className="font-bold text-primary mt-1">${item.price.toFixed(2)}</p>
                 </div>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
                   <Trash2 className="h-5 w-5 text-destructive" />
                   <span className="sr-only">Remove item</span>
                 </Button>
