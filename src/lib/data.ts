@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
     category: 'Books',
     subcategory: 'Fiction',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '1',
+    userId: '3',
     imageHint: 'book collection'
   },
   {
