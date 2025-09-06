@@ -103,9 +103,9 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary-foreground font-headline">
+            <Link href="/" className="flex items-center gap-2 text-2xl font-bold font-headline">
               <Leaf className="h-8 w-8 text-primary" />
-              <span className="hidden sm:inline">EcoFinds</span>
+              <span className="hidden sm:inline text-primary">EcoFinds</span>
             </Link>
           </div>
           
