@@ -5,6 +5,7 @@ import ProductCard from '@/components/product/ProductCard';
 import { mockProducts } from '@/lib/data';
 import type { Product, Category, SubCategory } from '@/lib/types';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export default function Home({
   searchParams,
@@ -37,6 +38,36 @@ export default function Home({
 
   return (
     <div>
+      <section className="bg-blue-600 text-white rounded-lg p-8 mb-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="md:w-1/2 text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Buy Smart. <br /> Buy Refurbished.
+            </h1>
+            <p className="text-lg mb-6">
+              Save up to <span className="text-yellow-400 font-bold">50%</span> on refurbished phones
+            </p>
+            <Button className="bg-yellow-400 text-blue-900 font-bold hover:bg-yellow-500">
+              Buy Now
+            </Button>
+          </div>
+          <div className="md:w-1/2 flex justify-center items-center relative">
+            <Image
+              src="https://picsum.photos/400/300"
+              alt="Refurbished phones"
+              width={400}
+              height={300}
+              className="rounded-lg z-10"
+              data-ai-hint="refurbished smartphones"
+            />
+            <div className="absolute -bottom-4 bg-blue-800 text-yellow-300 p-4 rounded-full shadow-lg z-20">
+              <p className="font-bold text-lg">SMART VALUE DAYS</p>
+              <p className="text-center text-sm">4th - 8th Sep</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <h1 className="text-3xl font-bold mb-4 font-headline">Explore Products</h1>
       <p className="text-muted-foreground mb-8">
         Find unique pre-owned items and contribute to a more sustainable world.
