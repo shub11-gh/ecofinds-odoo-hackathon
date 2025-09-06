@@ -1,12 +1,17 @@
+
+'use client';
+
 import Link from 'next/link';
 import { PlusCircle, Edit, Trash2 } from 'lucide-react';
 import ProductCard from '@/components/product/ProductCard';
-import { mockProducts, mockUser } from '@/lib/data';
+import { mockUser } from '@/lib/data';
+import { useProducts } from '@/contexts/ProductContext';
 import { Button } from '@/components/ui/button';
 
 export default function MyListingsPage() {
+  const { products, deleteProduct } = useProducts();
   // Filter products for the mock user
-  const userProducts = mockProducts.filter(p => p.userId === mockUser.id);
+  const userProducts = products.filter(p => p.userId === mockUser.id);
 
   return (
     <div>
@@ -34,7 +39,11 @@ export default function MyListingsPage() {
                       <span className="sr-only">Edit</span>
                     </Button>
                   </Link>
-                  <Button variant="destructive" size="icon">
+                  <Button 
+                    variant="destructive" 
+                    size="icon"
+                    onClick={() => deleteProduct(product.id)}
+                  >
                     <Trash2 className="h-4 w-4" />
                     <span className="sr-only">Delete</span>
                   </Button>
