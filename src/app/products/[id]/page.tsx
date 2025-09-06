@@ -68,7 +68,7 @@ export default function ProductDetailPage() {
             <Badge variant="outline" className="w-fit">{product.subcategory}</Badge>
           </div>
           <h1 className="text-4xl font-bold font-headline mb-4">{product.title}</h1>
-          <p className="text-3xl font-bold text-primary mb-6">${product.price.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-primary mb-6">₹{product.price.toFixed(2)}</p>
           <p className="text-muted-foreground leading-relaxed flex-grow">{product.description}</p>
           
           {!isOwner && (

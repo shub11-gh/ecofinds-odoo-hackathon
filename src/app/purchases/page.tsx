@@ -38,7 +38,7 @@ export default function PurchasesPage() {
                   <div className="ml-4 flex-grow">
                     <h2 className="font-semibold">{item.title}</h2>
                     <p className="text-sm text-muted-foreground">{item.category}</p>
-                    <p className="font-bold text-primary text-lg mt-1">${item.price.toFixed(2)}</p>
+                    <p className="font-bold text-primary text-lg mt-1">₹{item.price.toFixed(2)}</p>
                   </div>
                 </Link>
 

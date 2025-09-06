@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
@@ -26,7 +27,7 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
             />
             <Badge 
               className="absolute top-2 right-2 border-transparent text-black"
-              style={{ backgroundColor: '#FBEAE4' }}
+              style={{ backgroundColor: '#cccccc' }}
             >
               {product.subcategory}
             </Badge>
@@ -42,7 +43,7 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
         <p className="text-xl font-headline font-bold text-primary">
-          ${product.price.toFixed(2)}
+          ₹{product.price.toFixed(2)}
         </p>
         {actions ? (
           <div className="flex gap-2">{actions}</div>

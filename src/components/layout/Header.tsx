@@ -152,7 +152,7 @@ export default function Header() {
                           />
                           <div>
                             <p className="font-semibold">{product.title}</p>
-                            <p className="text-sm text-primary">${product.price.toFixed(2)}</p>
+                            <p className="text-sm text-primary">₹{product.price.toFixed(2)}</p>
                           </div>
                         </div>
                       ))}

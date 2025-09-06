@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, Package, ShoppingBag } from "lucide-react";
 
@@ -36,7 +37,7 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">${stats.totalEarnings.toFixed(2)}</div>
+                    <div className="text-2xl font-bold">₹{stats.totalEarnings.toFixed(2)}</div>
                     <p className="text-xs text-muted-foreground">
                         Revenue from sales
                     </p>
