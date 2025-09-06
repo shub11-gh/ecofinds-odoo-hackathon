@@ -17,7 +17,7 @@ export const mockProducts: Product[] = [
     price: 75.00,
     category: 'Clothing',
     subcategory: 'Jackets',
-    imageUrl: 'https://picsum.photos/seed/colorful/600/400',
+    imageUrl: 'https://imgs.search.brave.com/pxgSfB2yGAUMdW7SI35bNJXlJRWQy3UOJGimJscrTV8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1w/aG90by92aW50YWdl/LWxlYXRoZXItYmlr/ZXItamFja2V0LTI2/MG53LTE5NDA0MDIw/MC5qcGc',
     userId: '2',
     imageHint: 'leather jacket'
   },
