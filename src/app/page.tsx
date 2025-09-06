@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import CategoryFilter from '@/components/product/CategoryFilter';
 import ProductCard from '@/components/product/ProductCard';
@@ -18,14 +19,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  const category = searchParams.category as Category | undefined;
-  const subcategory = searchParams.subcategory as SubCategory<Category> | undefined;
-  const query = searchParams.q as string | undefined;
+export default function Home() {
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category') as Category | undefined;
+  const subcategory = searchParams.get('subcategory') as SubCategory<Category> | undefined;
+  const query = searchParams.get('q') as string | undefined;
 
   let filteredProducts: Product[] = mockProducts;
 
