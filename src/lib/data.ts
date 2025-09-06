@@ -129,48 +129,48 @@ export const mockRepairShops: RepairShop[] = [
         id: 'shop-1',
         name: 'Gadget Gurus',
         category: 'Electronics',
-        distance: '1.2 miles away',
-        contact: '555-0101',
+        distance: 'Koramangala, Bangalore',
+        contact: '+91 98765 43210',
         description: 'Expert repairs for all your electronic devices, from phones to laptops. Same-day screen repairs available.'
     },
     {
         id: 'shop-2',
         name: 'The Wood Whisperer',
         category: 'Furniture',
-        distance: '2.5 miles away',
-        contact: '555-0102',
+        distance: 'Indiranagar, Bangalore',
+        contact: '+91 98765 43211',
         description: 'Specializing in the restoration and repair of wooden furniture. We bring your cherished pieces back to life.'
     },
     {
         id: 'shop-3',
         name: 'Stitch in Time',
         category: 'Clothing',
-        distance: '3.1 miles away',
-        contact: '555-0103',
+        distance: 'Jayanagar, Bangalore',
+        contact: '+91 98765 43212',
         description: 'Professional alterations and repairs for all types of clothing. From simple hems to complex tailoring.'
     },
      {
         id: 'shop-4',
         name: 'Appliance Avengers',
         category: 'Appliances',
-        distance: '4.0 miles away',
-        contact: '555-0104',
+        distance: 'Marathahalli, Bangalore',
+        contact: '+91 98765 43213',
         description: 'Fast and reliable repairs for all major home appliances. Certified technicians for washers, dryers, and more.'
     },
     {
         id: 'shop-5',
         name: 'The Gem Clinic',
         category: 'Jewelry',
-        distance: '4.5 miles away',
-        contact: '555-0105',
+        distance: 'Commercial Street, Bangalore',
+        contact: '+91 98765 43214',
         description: 'Delicate and precise jewelry repair. We handle everything from ring sizing to stone replacement with care.'
     },
     {
         id: 'shop-6',
         name: 'Fix-It-All Workshop',
         category: 'Other',
-        distance: '5.2 miles away',
-        contact: '555-0106',
+        distance: 'BTM Layout, Bangalore',
+        contact: '+91 98765 43215',
         description: 'A general repair shop for anything else you can think of. If it\'s broken, we can probably fix it!'
     }
 ];
