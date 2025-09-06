@@ -50,7 +50,7 @@ export const mockProducts: Product[] = [
     price: 45.00,
     category: 'Electronics',
     subcategory: 'Mobiles', // Assuming this fits best
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://imgs.search.brave.com/WxTn9RrFFKvVzk2TTVryRmcED3peh2myR9ZQIZuKwxs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dGhld2lyZWN1dHRl/ci5jb20vd3AtY29u/dGVudC9tZWRpYS8y/MDI0LzA3L3BvcnRh/YmxlYmx1ZXRvb3Ro/c3BlYWtlcnMtMjA0/OHB4LTMzNTMuanBn/P2F1dG89d2VicCZx/dWFsaXR5PTc1Jndp/ZHRoPTEwMjQ',
     userId: '3',
     imageHint: 'bluetooth speaker'
   },
