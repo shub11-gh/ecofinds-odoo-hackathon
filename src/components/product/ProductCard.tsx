@@ -24,7 +24,12 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
               className="object-cover w-full h-48"
               data-ai-hint={product.imageHint}
             />
-            <Badge variant="secondary" className="absolute top-2 right-2">{product.subcategory}</Badge>
+            <Badge 
+              className="absolute top-2 right-2 border-transparent text-black"
+              style={{ backgroundColor: '#cccccc' }}
+            >
+              {product.subcategory}
+            </Badge>
           </div>
         </Link>
       </CardHeader>
