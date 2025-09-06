@@ -38,7 +38,7 @@ export default function Home({
 
   return (
     <div>
-      <section className="bg-card rounded-lg p-8 mb-8 shadow-md">
+      <section className="mb-8">
           <Image
               src="https://s3no.cashify.in/cashify/web/49fd126086f547bc87104c4e604c254b.webp?p=default&s=lg"
               alt="Promotional Banner"
