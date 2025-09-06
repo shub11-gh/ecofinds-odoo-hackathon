@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { mockProducts, mockUser, mockCart } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
@@ -10,8 +10,9 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
+export default function ProductDetailPage() {
   const router = useRouter();
+  const params = useParams();
   const { toast } = useToast();
   const product = mockProducts.find(p => p.id === params.id);
 
