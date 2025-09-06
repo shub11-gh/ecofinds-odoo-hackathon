@@ -61,7 +61,7 @@ export const mockProducts: Product[] = [
     price: 30.00,
     category: 'Other',
     subcategory: 'Home Decor',
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://imgs.search.brave.com/TnjHBsVZw44TgoEuJFHSSmgpgBw9U6y0NxyMUizkajM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMud2ZjZG4uY29t/L2ltLzM4NzMxNDM3/L3Jlc2l6ZS1oNDAw/LXc0MDBeY29tcHIt/cjg1LzM0MjEvMzQy/MTQ0MTMvQXlvbitI/YW5kbWFkZStDZXJh/bWljK1RhYmxlK1Zh/c2UuanBn',
     userId: '2',
     imageHint: 'ceramic vase'
   },
