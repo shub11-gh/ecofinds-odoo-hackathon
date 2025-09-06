@@ -73,7 +73,6 @@ Ensure that the tips are clear, concise, and easy to understand.
 Decide if the information, hints, or a new certification level needs to be displayed, and set the shouldDisplayInformation field appropriately.
 
 Output JSON:
-{{json}}
 `,
 });
 
