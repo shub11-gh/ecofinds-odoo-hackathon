@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Leaf } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 const GoogleIcon = () => (
     <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -44,14 +46,30 @@ export default function LoginPage() {
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
           <CardDescription>Log in to your EcoFinds account.</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="grid gap-4">
+            <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="you@example.com" />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" placeholder="••••••••" />
+            </div>
+            <Button className="w-full">Login with Email</Button>
+
+            <div className="flex items-center">
+                <Separator className="flex-grow" />
+                <span className="mx-4 text-xs text-muted-foreground">OR</span>
+                <Separator className="flex-grow" />
+            </div>
+
            <Button variant="outline" className="w-full" disabled>
               <GoogleIcon />
               Sign in with Google
             </Button>
         </CardContent>
-        <CardFooter className="flex flex-col gap-4">
-          <p className="text-center text-sm text-muted-foreground">
+        <CardFooter>
+          <p className="w-full text-center text-sm text-muted-foreground">
             Don't have an account?{" "}
             <Link href="/signup" className="underline text-primary hover:text-primary/80">
               Sign up
