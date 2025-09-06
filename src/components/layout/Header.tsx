@@ -5,18 +5,18 @@ import Link from 'next/link';
 import { Search, ShoppingCart, Leaf, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Header() {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const query = formData.get('search') as string;
-    const params = new URLSearchParams();
+    
+    const params = new URLSearchParams(searchParams);
     if (query) {
       params.set('q', query);
     } else {
@@ -36,22 +36,21 @@ export default function Header() {
             </Link>
           </div>
           
-          {pathname === '/' && (
-            <div className="flex-1 flex justify-center px-8">
-              <form onSubmit={handleSearch} className="w-full max-w-md">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input 
-                    name="search"
-                    type="search" 
-                    placeholder="Search for items..." 
-                    className="w-full pl-10" 
-                    defaultValue={searchParams.get('q') || ''}
-                  />
-                </div>
-              </form>
-            </div>
-          )}
+          <div className="flex-1 flex justify-center px-8">
+            <form onSubmit={handleSearch} className="w-full max-w-md">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input 
+                  name="search"
+                  type="search" 
+                  placeholder="Search for items..." 
+                  className="w-full pl-10" 
+                  defaultValue={searchParams.get('q') || ''}
+                  key={searchParams.get('q')} // Add key to reset input on navigation
+                />
+              </div>
+            </form>
+          </div>
 
           <nav className="flex items-center space-x-2 sm:space-x-4">
             <Link href="/products/new" passHref>
