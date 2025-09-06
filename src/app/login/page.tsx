@@ -63,7 +63,7 @@ export default function LoginPage() {
                 <Separator className="flex-grow" />
             </div>
 
-           <Button variant="outline" className="w-full" disabled>
+           <Button variant="outline" className="w-full">
               <GoogleIcon />
               Sign in with Google
             </Button>
