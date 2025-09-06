@@ -24,7 +24,7 @@ export default function SignUpPage() {
           <CardDescription>Join EcoFinds and start your sustainable journey.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form id="signup-form">
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Username</Label>
@@ -42,7 +42,7 @@ export default function SignUpPage() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button className="w-full">Sign Up</Button>
+          <Button type="submit" form="signup-form" className="w-full">Sign Up</Button>
           <p className="text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link href="/login" className="underline text-primary hover:text-primary/80">
