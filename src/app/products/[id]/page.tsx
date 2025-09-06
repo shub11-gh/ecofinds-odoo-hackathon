@@ -7,7 +7,10 @@ import { Separator } from '@/components/ui/separator';
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const product = mockProducts.find(p => p.id === params.id);
-  const isOwner = product?.userId === mockUser.id;
+  
+  // In a real app, you would get the current logged-in user's ID
+  const currentUserId = mockUser.id; 
+  const isOwner = product?.userId === currentUserId;
 
   if (!product) {
     return (
