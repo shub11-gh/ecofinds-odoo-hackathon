@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +28,7 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { categories } from '@/lib/data';
+import { categories, mockProducts, mockUser } from '@/lib/data';
 import type { Product, Category, SubCategory } from '@/lib/types';
 import { generateEcoScore } from '@/ai/flows/personalized-eco-score';
 import { ImagePlus, Loader2, X } from 'lucide-react';
@@ -101,7 +102,30 @@ export function ProductForm({ product }: ProductFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     try {
-      console.log('Form submitted:', values);
+      if (product) {
+        // Find the index of the product to update
+        const productIndex = mockProducts.findIndex(p => p.id === product.id);
+        if (productIndex !== -1) {
+            // Update the product
+            mockProducts[productIndex] = {
+                ...mockProducts[productIndex],
+                ...values,
+                subcategory: values.subcategory as SubCategory<Category>,
+                imageUrl: imagePreview || mockProducts[productIndex].imageUrl,
+            };
+        }
+      } else {
+        // Create a new product and add it to the mock data
+        const newProduct: Product = {
+            id: String(Date.now()), // Simple unique ID generator
+            ...values,
+            subcategory: values.subcategory as SubCategory<Category>,
+            userId: mockUser.id,
+            imageUrl: imagePreview || 'https://picsum.photos/600/400',
+            imageHint: `${values.category} ${values.subcategory}`.toLowerCase(),
+        };
+        mockProducts.unshift(newProduct); // Add to the beginning of the array
+      }
 
       const ecoScoreResult = await generateEcoScore({
         userProfile: 'A user named SustainableSam is creating a new listing.',
