@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         hostname: 's3no.cashify.in',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image2url.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
