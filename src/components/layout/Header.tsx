@@ -12,11 +12,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
   SheetTrigger,
   SheetClose
 } from '@/components/ui/sheet';
@@ -103,7 +105,7 @@ export default function Header() {
           <div className="flex-1 flex justify-center px-2 sm:px-8">
             <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="w-full sm:w-auto justify-start sm:justify-center text-muted-foreground sm:border sm:px-4">
+                <Button variant="outline" className="w-full justify-start text-muted-foreground border px-4">
                   <Search className="h-5 w-5 mr-2" />
                   <span className='truncate'>Search for products...</span>
                 </Button>
@@ -178,6 +180,12 @@ export default function Header() {
                   </Button>
                 </SheetTrigger>
                 <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                    <SheetDescription>
+                      Navigate through the application pages.
+                    </SheetDescription>
+                  </SheetHeader>
                   <div className="flex flex-col space-y-4 pt-8">
                     {navLinks}
                     <SheetClose asChild>
