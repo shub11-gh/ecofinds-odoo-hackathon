@@ -17,7 +17,7 @@ export const mockProducts: Product[] = [
     price: 75.00,
     category: 'Clothing',
     subcategory: 'Jackets',
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://picsum.photos/seed/colorful/600/400',
     userId: '2',
     imageHint: 'leather jacket'
   },
