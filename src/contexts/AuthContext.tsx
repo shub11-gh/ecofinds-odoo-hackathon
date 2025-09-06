@@ -8,7 +8,7 @@ import { mockUser } from '@/lib/data';
 
 interface AuthContextType {
   user: User | null;
-  login: () => void;
+  login: (userData?: Partial<User>) => void;
   logout: () => void;
 }
 
@@ -26,10 +26,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = () => {
-    // In a real app, this would be the result of a successful API call
-    sessionStorage.setItem('user', JSON.stringify(mockUser));
-    setUser(mockUser);
+  const login = (userData?: Partial<User>) => {
+    const userToLogin = { ...mockUser, ...userData };
+    sessionStorage.setItem('user', JSON.stringify(userToLogin));
+    setUser(userToLogin);
     router.push('/');
   };
 

@@ -17,14 +17,17 @@ import { Leaf } from "lucide-react"
 import { useRouter } from "next/navigation"
 import type React from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 export default function SignUpPage() {
   const router = useRouter();
   const { login } = useAuth();
+  const [username, setUsername] = useState('');
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login();
+    login({ username: username || 'NewUser' });
   };
 
   return (
@@ -42,7 +45,13 @@ export default function SignUpPage() {
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Username</Label>
-                <Input id="username" type="text" placeholder="SustainableYou" />
+                <Input 
+                  id="username" 
+                  type="text" 
+                  placeholder="SustainableYou" 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">Email</Label>
