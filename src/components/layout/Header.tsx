@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Search, ShoppingCart, Leaf, PlusCircle } from 'lucide-react';
+import { Search, ShoppingCart, Leaf, PlusCircle, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose
+} from '@/components/ui/sheet';
 import { mockProducts } from '@/lib/data';
 import type { Product } from '@/lib/types';
 import Image from 'next/image';
@@ -63,6 +69,26 @@ export default function Header() {
     return null; 
   }
 
+  const navLinks = (
+    <>
+      <Link href="/products/new" passHref>
+        <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">
+          <PlusCircle className="mr-2 h-5 w-5" />
+          Add Listing
+        </Button>
+      </Link>
+       <Link href="/my-listings" passHref>
+        <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">My Listings</Button>
+      </Link>
+      <Link href="/purchases" passHref>
+        <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">Purchases</Button>
+      </Link>
+      <Link href="/dashboard" passHref>
+        <Button variant="ghost" className="w-full justify-start sm:w-auto sm:justify-center">Dashboard</Button>
+      </Link>
+    </>
+  );
+
   return (
     <header className="bg-card border-b sticky top-0 z-40 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,16 +96,16 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary-foreground font-headline">
               <Leaf className="h-8 w-8 text-primary" />
-              <span>EcoFinds</span>
+              <span className="hidden sm:inline">EcoFinds</span>
             </Link>
           </div>
           
-          <div className="flex-1 flex justify-center px-8">
+          <div className="flex-1 flex justify-center px-2 sm:px-8">
             <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Search className="h-5 w-5" />
-                  <span className="sr-only">Search</span>
+                <Button variant="ghost" className="w-full sm:w-auto justify-start sm:justify-center text-muted-foreground sm:border sm:px-4">
+                  <Search className="h-5 w-5 mr-2" />
+                  <span className='truncate'>Search for products...</span>
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[525px]">
@@ -94,6 +120,7 @@ export default function Header() {
                       value={searchQuery}
                       onChange={handleSearchChange}
                       className="pl-10"
+                      autoFocus
                     />
                   </div>
                 </form>
@@ -129,22 +156,10 @@ export default function Header() {
             </Dialog>
           </div>
 
-          <nav className="flex items-center space-x-2 sm:space-x-4">
-            <Link href="/products/new" passHref>
-              <Button variant="ghost" className="hidden sm:inline-flex">
-                <PlusCircle className="mr-2 h-5 w-5" />
-                Add Listing
-              </Button>
-            </Link>
-             <Link href="/my-listings" passHref>
-              <Button variant="ghost">My Listings</Button>
-            </Link>
-            <Link href="/purchases" passHref>
-              <Button variant="ghost">Purchases</Button>
-            </Link>
-            <Link href="/dashboard" passHref>
-              <Button variant="ghost">Dashboard</Button>
-            </Link>
+          <nav className="flex items-center space-x-1 sm:space-x-2">
+             <div className="hidden sm:flex sm:items-center sm:space-x-2">
+                {navLinks}
+             </div>
             <Link href="/cart" passHref>
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-5 w-5" />
@@ -152,8 +167,28 @@ export default function Header() {
               </Button>
             </Link>
             <Link href="/login" passHref>
-              <Button>Login</Button>
+              <Button className="hidden sm:inline-flex">Login</Button>
             </Link>
+            <div className="sm:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <div className="flex flex-col space-y-4 pt-8">
+                    {navLinks}
+                    <SheetClose asChild>
+                       <Link href="/login" passHref>
+                         <Button className="w-full">Login</Button>
+                       </Link>
+                    </SheetClose>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </nav>
         </div>
       </div>
