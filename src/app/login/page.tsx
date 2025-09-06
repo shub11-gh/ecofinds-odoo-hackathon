@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import type React from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 const GoogleIcon = () => (
     <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -42,10 +43,11 @@ const GoogleIcon = () => (
 
 export default function LoginPage() {
   const { login } = useAuth();
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login();
+    login({ email: email || 'sam@example.com' });
   };
 
   return (
@@ -62,7 +64,13 @@ export default function LoginPage() {
            <form onSubmit={handleSubmit} className="grid gap-4">
               <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="you@example.com" />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="you@example.com" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
               </div>
               <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>

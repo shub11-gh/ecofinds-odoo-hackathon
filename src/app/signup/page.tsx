@@ -23,11 +23,15 @@ export default function SignUpPage() {
   const router = useRouter();
   const { login } = useAuth();
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login({ username: username || 'NewUser' });
+    login({ 
+        username: username || 'NewUser',
+        email: email || 'newuser@example.com' 
+    });
   };
 
   return (
@@ -55,7 +59,13 @@ export default function SignUpPage() {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="you@example.com" />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="you@example.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
