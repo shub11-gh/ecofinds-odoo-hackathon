@@ -213,7 +213,7 @@ export function ProductForm({ product }: ProductFormProps) {
                     <FormItem>
                         <FormLabel>Image</FormLabel>
                         <FormControl>
-                            <>
+                            <div>
                                 <Input
                                     type="file"
                                     accept="image/*"
@@ -252,7 +252,7 @@ export function ProductForm({ product }: ProductFormProps) {
                                         </div>
                                     </div>
                                 )}
-                            </>
+                            </div>
                         </FormControl>
                         <FormDescription>
                            Upload a clear image of your item.
