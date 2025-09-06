@@ -72,7 +72,7 @@ export const mockProducts: Product[] = [
     price: 60.00,
     category: 'Clothing',
     subcategory: 'Jeans',
-    imageUrl: 'https://picsum.photos/600/400',
+    imageUrl: 'https://imgs.search.brave.com/yoMke5_GhLSnevY_oqSqeu8qqXD8yUxa1vj4s4E8SP8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZnVuZmFzaGlvbi5j/YS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/Mi8wMi8yMlNXRUQw/Mi1EZXNpZ3VhbC1M/YW5kc2NhcGUtRGVu/aW0tSmFja2V0LVBh/dGNoZXMtMzE4eDQy/NC5qcGVn',
     userId: '3',
     imageHint: 'denim jeans'
   }
