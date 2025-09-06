@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -59,7 +60,9 @@ export default function CartPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full" size="lg">Proceed to Checkout</Button>
+                <Link href="/checkout" passHref className='w-full'>
+                  <Button className="w-full" size="lg">Proceed to Checkout</Button>
+                </Link>
               </CardFooter>
             </Card>
           </div>

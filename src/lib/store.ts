@@ -1,3 +1,4 @@
+
 import { create } from 'zustand';
 import type { Product } from './types';
 
@@ -6,6 +7,7 @@ interface CartState {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
   isItemInCart: (productId: string) => boolean;
+  clearCart: () => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -23,4 +25,5 @@ export const useCartStore = create<CartState>((set, get) => ({
     })),
   isItemInCart: (productId) =>
     get().items.some((item) => item.id === productId),
+  clearCart: () => set({ items: [] }),
 }));

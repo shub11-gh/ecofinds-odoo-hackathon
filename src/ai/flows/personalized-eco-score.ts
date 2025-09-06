@@ -73,6 +73,7 @@ Ensure that the tips are clear, concise, and easy to understand.
 Decide if the information, hints, or a new certification level needs to be displayed, and set the shouldDisplayInformation field appropriately.
 
 Output JSON:
+{{json}}
 `,
 });
 
@@ -83,10 +84,18 @@ const ecoScoreFlow = ai.defineFlow(
     outputSchema: EcoScoreOutputSchema,
   },
   async input => {
-    const {output} = await ai.generate({
-      prompt: ecoScorePrompt,
-      input,
-    });
-    return output!;
+    try {
+      const result = await ecoScorePrompt(input);
+      return result.output!;
+    } catch (error) {
+      console.error('Error in ecoScoreFlow:', error);
+      // Return a default response if the AI call fails
+      return {
+        ecoScore: 50,
+        tips: ["Consider adding more details about your product's sustainability features."],
+        certificationLevel: "Bronze",
+        shouldDisplayInformation: false,
+      };
+    }
   }
 );
