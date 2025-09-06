@@ -66,10 +66,6 @@ export default function Header() {
           </div>
           
           <div className="flex-1 flex justify-center px-8">
-            {/* Search component will be here */}
-          </div>
-
-          <nav className="flex items-center space-x-2 sm:space-x-4">
             <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
               <DialogTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -122,7 +118,9 @@ export default function Header() {
                 </div>
               </DialogContent>
             </Dialog>
+          </div>
 
+          <nav className="flex items-center space-x-2 sm:space-x-4">
             <Link href="/products/new" passHref>
               <Button variant="ghost" className="hidden sm:inline-flex">
                 <PlusCircle className="mr-2 h-5 w-5" />
