@@ -1,5 +1,7 @@
 export type Category = 'Electronics' | 'Furniture' | 'Clothing' | 'Books' | 'Other';
 
+export type TrackingStatus = 'Shipped' | 'In Transit' | 'Out for Delivery' | 'Delivered';
+
 export interface Product {
   id: string;
   title: string;
@@ -28,4 +30,5 @@ export interface Purchase extends Product {
   purchaseDate: string;
   estimatedArrival: string;
   trackingNumber: string;
+  trackingStatus: TrackingStatus;
 }

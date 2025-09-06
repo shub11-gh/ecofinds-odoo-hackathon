@@ -88,6 +88,7 @@ export const mockPurchases: Purchase[] = [
     ...mockProducts[4],
     purchaseDate: '2024-07-28',
     estimatedArrival: '2024-08-05',
-    trackingNumber: '1Z999AA10123456784'
+    trackingNumber: '1Z999AA10123456784',
+    trackingStatus: 'Out for Delivery'
   }
 ];

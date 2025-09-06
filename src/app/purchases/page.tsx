@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Truck } from 'lucide-react';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { DeliveryTracker } from '@/components/purchases/DeliveryTracker';
 
 export default function PurchasesPage() {
   return (
@@ -40,19 +40,17 @@ export default function PurchasesPage() {
                 <div className="flex-shrink-0 text-center sm:text-right w-full sm:w-auto">
                   <Badge variant="outline" className="mb-2">Purchased</Badge>
                   <p className="text-sm text-muted-foreground">Est. Arrival: {new Date(item.estimatedArrival).toLocaleDateString()}</p>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button variant="ghost" className="mt-2">
-                          <Truck className="mr-2 h-4 w-4" />
-                          Show tracker preview
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Tracking: {item.trackingNumber}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="ghost" className="mt-2">
+                        <Truck className="mr-2 h-4 w-4" />
+                        Show tracker preview
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80">
+                      <DeliveryTracker currentStatus={item.trackingStatus} />
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
             </Card>
