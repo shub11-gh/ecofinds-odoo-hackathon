@@ -26,6 +26,12 @@ export interface Product {
   imageHint: string;
 }
 
+export interface UserActivity {
+    month: string;
+    listings: number;
+    sales: number;
+}
+
 export interface User {
   id: string;
   username: string;
@@ -33,6 +39,12 @@ export interface User {
   ecoScore?: number;
   ecoTips?: string[];
   ecoCertification?: string;
+  activity?: UserActivity[];
+  stats?: {
+    itemsSold: number;
+    totalEarnings: number;
+    activeListings: number;
+  }
 }
 
 export interface CartItem extends Product {

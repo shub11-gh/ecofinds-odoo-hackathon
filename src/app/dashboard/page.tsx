@@ -1,5 +1,7 @@
 import { DashboardForm } from "@/components/dashboard/DashboardForm";
 import { EcoScoreDisplay } from "@/components/dashboard/EcoScoreDisplay";
+import { DashboardStats } from "@/components/dashboard/DashboardStats";
+import { ActivityChart } from "@/components/dashboard/ActivityChart";
 import { mockUser } from "@/lib/data";
 
 export default function DashboardPage() {
@@ -11,6 +13,8 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold font-headline mb-8">Dashboard</h1>
             <div className="grid lg:grid-cols-3 gap-8 items-start">
                 <div className="lg:col-span-2 space-y-8">
+                    <DashboardStats stats={user.stats} />
+                    <ActivityChart data={user.activity} />
                     <DashboardForm user={user} />
                 </div>
                 <div className="lg:col-span-1">

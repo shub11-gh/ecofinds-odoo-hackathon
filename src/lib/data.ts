@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
     category: 'Books',
     subcategory: 'Fiction',
     imageUrl: 'https://picsum.photos/600/400',
-    userId: '3',
+    userId: '2',
     imageHint: 'book collection'
   },
   {
@@ -87,7 +87,20 @@ export const mockUser: User = {
     "Highlight the durable and long-lasting nature of your products in descriptions.",
     "Group multiple items for a single buyer to reduce shipping emissions."
   ],
-  ecoCertification: "Silver"
+  ecoCertification: "Silver",
+  activity: [
+    { month: 'Jan', listings: 5, sales: 3 },
+    { month: 'Feb', listings: 7, sales: 4 },
+    { month: 'Mar', listings: 6, sales: 5 },
+    { month: 'Apr', listings: 8, sales: 6 },
+    { month: 'May', listings: 10, sales: 8 },
+    { month: 'Jun', listings: 9, sales: 7 },
+  ],
+  stats: {
+    itemsSold: 33,
+    totalEarnings: 2450.75,
+    activeListings: 9,
+  }
 };
 
 export const mockCart: Product[] = [
