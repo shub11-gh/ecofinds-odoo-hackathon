@@ -26,7 +26,7 @@ export default function ProductCard({ product, actions }: ProductCardProps) {
             />
             <Badge 
               className="absolute top-2 right-2 border-transparent text-black"
-              style={{ backgroundColor: '#cccccc' }}
+              style={{ backgroundColor: '#FBEAE4' }}
             >
               {product.subcategory}
             </Badge>
