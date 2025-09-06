@@ -1,4 +1,6 @@
 
+'use client';
+
 import { mockRepairShops } from '@/lib/data';
 import { RepairShopCard } from './RepairShopCard';
 
